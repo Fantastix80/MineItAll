@@ -1,0 +1,22 @@
+CREATE DATABASE c_cpp_cinema;
+
+USE c_cpp_cinema;
+
+CREATE TABLE salle(
+	numero int PRIMARY KEY,
+    capacite int
+);
+
+CREATE TABLE film(
+  	nom VARCHAR(50) PRIMARY KEY,
+	duree int,
+    salle int REFERENCES salles(numero)
+);
+
+INSERT INTO salle(numero, capacite) VALUES(1, 35);
+INSERT INTO salle(numero, capacite) VALUES(2, 24);
+INSERT INTO salle(numero, capacite) VALUES(3, 31);
+
+INSERT INTO film(nom, duree, salle) VALUES("Spiderman: home coming", 123, 1);
+INSERT INTO film(nom, duree, salle) VALUES("Iron man: La naissance d'une légende", 143, 2);
+INSERT INTO film(nom, duree, salle) VALUES("Thor: Un dieu pas comme les autres", 99, 3);
