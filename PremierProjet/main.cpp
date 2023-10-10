@@ -2,6 +2,7 @@
 #include <iostream>
 #include "Client.h"
 #include "FileAttente.h"
+#include "GenerateClient.h"
 #include <vector>
 
 using namespace std;
@@ -41,5 +42,10 @@ int main()
 
 	displayList(ListeFileAttente);
 
+	for (int i = 0; i < 100; i++)
+	{
+		cout << GetRandomInt(0,5) << endl;
+	}
+	
 	return 0;
 }

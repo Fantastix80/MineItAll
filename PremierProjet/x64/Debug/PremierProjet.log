@@ -1,2 +1,4 @@
-﻿  BDD.c
-C:\Users\jeanv\Desktop\Cours\Dev applis\C-C++\PremierProjet\PremierProjet\BDD.c(1,10): fatal  error C1083: Impossible d'ouvrir le fichier include : 'mysql/mysql.h' : No such file or directory
+﻿main.obj : error LNK2019: symbole externe non résolu "int __cdecl GetRandomInt(int,int)" (?GetRandomInt@@YAHHH@Z) référencé dans la fonction main
+    Conseil sur les symboles définis et susceptibles de correspondre :
+      GetRandomInt
+C:\Users\jeanv\Desktop\Cours\Dev applis\C-C++\c_cpp_FileAttente\x64\Debug\PremierProjet.exe : fatal error LNK1120: 1 externes non résolus
