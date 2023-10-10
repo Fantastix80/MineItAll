@@ -1,0 +1,8 @@
+﻿  App.cpp
+  Game.c
+C:\Users\jeanv\Desktop\Cours\Dev applis\C-C++\MineItAll\MineItAll\Game.c(40,4): warning C4013: 'StartGame' non défini(e) ; extern retournant int pris par défaut
+C:\Users\jeanv\Desktop\Cours\Dev applis\C-C++\MineItAll\MineItAll\Game.c(43,4): warning C4013: 'GameRules' non défini(e) ; extern retournant int pris par défaut
+C:\Users\jeanv\Desktop\Cours\Dev applis\C-C++\MineItAll\MineItAll\Game.c(57,6): error C2371: 'StartGame' : redéfinition ; types de base différents
+C:\Users\jeanv\Desktop\Cours\Dev applis\C-C++\MineItAll\MineItAll\Game.c(74,4): warning C4013: 'PlayerTurn' non défini(e) ; extern retournant int pris par défaut
+C:\Users\jeanv\Desktop\Cours\Dev applis\C-C++\MineItAll\MineItAll\Game.c(79,6): error C2371: 'PlayerTurn' : redéfinition ; types de base différents
+C:\Users\jeanv\Desktop\Cours\Dev applis\C-C++\MineItAll\MineItAll\Game.c(84,6): error C2371: 'GameRules' : redéfinition ; types de base différents
