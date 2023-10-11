@@ -1,11 +1,12 @@
 #ifndef MINE_H
 #define MINE_H
 
-#include "Player.h"
 #include <string>
+#include <vector>
 
 using namespace std;
 
+class Player;
 
 class Mine
 {
@@ -16,8 +17,10 @@ public:
     string Nom;
     int CapaciteMax;
     int DureeMinage;
+    int MinageEnCours;
     int Gain;
-    Player* ListeMineursPresents[];
+    //Player* ListeMineursPresents[];
+    vector<Player*> ListeMineursPresents;
 };
 
 #endif // MINE_H

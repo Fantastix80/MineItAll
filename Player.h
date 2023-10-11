@@ -3,6 +3,8 @@
 
 #include <string>
 
+class Mine;
+
 class Player
 {
 public:
@@ -10,11 +12,14 @@ public:
     std::string GetPlayerName();
     int GetPlayerCoins();
     int GetPlayerMiners();
+    void SetPlayerCoins(int NewAmountOfCoins);
+    void SetPlayerMiners(int NewAmountOfMiners);
 
 private:
     std::string Name;
     int Coins;
     int Miners;
+    Mine* WhereIsMiner;
 };
 
 #endif // PLAYER_H

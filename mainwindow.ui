@@ -212,8 +212,29 @@ QPushButton
        <item alignment="Qt::AlignHCenter|Qt::AlignTop">
         <widget class="QWidget" name="TopCenterContainer" native="true">
          <layout class="QVBoxLayout" name="verticalLayout_3">
+          <property name="spacing">
+           <number>0</number>
+          </property>
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
           <item alignment="Qt::AlignHCenter">
            <widget class="QLabel" name="Round">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="font">
              <font>
               <pointsize>20</pointsize>
@@ -279,7 +300,20 @@ QPushButton
              </font>
             </property>
             <property name="text">
-             <string/>
+             <string>texte de base</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QProgressBar" name="TimerTimeLeft">
+            <property name="maximum">
+             <number>20</number>
+            </property>
+            <property name="value">
+             <number>0</number>
+            </property>
+            <property name="textVisible">
+             <bool>false</bool>
             </property>
            </widget>
           </item>
@@ -533,7 +567,7 @@ QPushButton
                      </font>
                     </property>
                     <property name="text">
-                     <string> / 2 Mineurs maximum</string>
+                     <string> / 2 mineurs maximum</string>
                     </property>
                    </widget>
                   </item>
@@ -588,12 +622,12 @@ QPushButton
                  </widget>
                 </item>
                 <item>
-                 <layout class="QHBoxLayout" name="Mine1AvailibilityContainer_2">
+                 <layout class="QHBoxLayout" name="Mine2AvailibilityContainer">
                   <property name="spacing">
                    <number>0</number>
                   </property>
                   <item>
-                   <widget class="QLabel" name="Mine1CurrentMiners_2">
+                   <widget class="QLabel" name="Mine2CurrentMiners">
                     <property name="font">
                      <font>
                       <pointsize>12</pointsize>
@@ -605,14 +639,14 @@ QPushButton
                    </widget>
                   </item>
                   <item>
-                   <widget class="QLabel" name="Mine1TotalMiners_2">
+                   <widget class="QLabel" name="Mine2TotalMiners">
                     <property name="font">
                      <font>
                       <pointsize>12</pointsize>
                      </font>
                     </property>
                     <property name="text">
-                     <string> / 2 Mineurs maximum</string>
+                     <string> / 2 mineurs maximum</string>
                     </property>
                    </widget>
                   </item>
@@ -712,7 +746,7 @@ QPushButton
                      </font>
                     </property>
                     <property name="text">
-                     <string> / 2 Mineurs maximum</string>
+                     <string> / 2 mineurs maximum</string>
                     </property>
                    </widget>
                   </item>
@@ -791,7 +825,7 @@ QPushButton
                      </font>
                     </property>
                     <property name="text">
-                     <string> / 2 Mineurs maximum</string>
+                     <string> / 2 mineurs maximum</string>
                     </property>
                    </widget>
                   </item>
