@@ -34,7 +34,40 @@ QPushButton
 	padding: 5px 10px;
 	background-color: #F68929;
 	border-radius: 10px;
-}</string>
+}
+
+QPushButton::disabled
+{
+	background-color: rgb(76, 76, 76);
+}
+
+#CantPlayLabel
+{
+	color: red;
+	margin-bottom: 10px;
+}
+
+QProgressBar
+{
+	background-color: #2c313c;
+	border-style: solid;
+	border-radius: 10px;
+}
+
+QProgressBar::chunk
+{
+	border-radius: 10px;
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(246, 137, 41, 255), stop:1 rgba(255, 71, 15, 255));
+}
+
+/*
+Dark: #16191d
+Accent_1: #1f232a
+Accent_2: #2c313c
+Accent_3: #343b47
+Text_1: #fff
+Text_2: #838ea2
+*/</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -294,18 +327,36 @@ QPushButton
           </item>
           <item alignment="Qt::AlignHCenter">
            <widget class="QLabel" name="CantPlayLabel">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>16777215</height>
+             </size>
+            </property>
             <property name="font">
              <font>
               <pointsize>12</pointsize>
              </font>
             </property>
             <property name="text">
-             <string>texte de base</string>
+             <string/>
             </property>
            </widget>
           </item>
-          <item>
+          <item alignment="Qt::AlignHCenter">
            <widget class="QProgressBar" name="TimerTimeLeft">
+            <property name="minimumSize">
+             <size>
+              <width>245</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>245</width>
+              <height>24</height>
+             </size>
+            </property>
             <property name="maximum">
              <number>20</number>
             </property>

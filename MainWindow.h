@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QTimer>
+#include <QProgressBar>
 #include "Player.h"
 #include "Partie.h"
 #include <string>
@@ -34,6 +35,9 @@ public:
     void ReactivateAllButton();
     void InitialisePlayersDisplay();
     void InitialiseMinesDisplay();
+    void ShowProgressBar(QProgressBar* ProgressBar);
+    void UpdateProgressBar(QProgressBar* ProgressBar, int NumeroMine);
+    void ClearAndHideProgressBar(QProgressBar* ProgressBar);
 
 private:
     Ui::MainWindow *ui;

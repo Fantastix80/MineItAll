@@ -3,11 +3,17 @@
 
 using namespace std;
 
-Player::Player(string PlayerName)
+Player::Player(int PlayerNumber, string PlayerName)
 {
+    this->Number = PlayerNumber;
     this->Name = PlayerName;
     this->Coins = 0;
     this->Miners = 1;
+}
+
+int Player::GetPlayerNumber()
+{
+    return this->Number;
 }
 
 string Player::GetPlayerName()

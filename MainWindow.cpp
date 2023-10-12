@@ -68,13 +68,32 @@ int MainWindow::EnterMine(int MineAEntrer)
             PartieEnCours.ListeMines[MineAEntrer-1]->ListeMineursPresents.push_back(PartieEnCours.ListeJoueurs[PartieEnCours.TourJoueur]);
             PartieEnCours.ListeJoueurs[PartieEnCours.TourJoueur]->SetPlayerMiners(PartieEnCours.ListeJoueurs[PartieEnCours.TourJoueur]->GetPlayerMiners()-1);
 
+            // On vient afficher la progress bar du mineur
+            int Numero = PartieEnCours.ListeJoueurs[PartieEnCours.TourJoueur]->GetPlayerNumber();
+            switch (Numero)
+            {
+            case 1:
+                ShowProgressBar(ui->Player1MinerWorkingProgress);
+                break;
+            case 2:
+                ShowProgressBar(ui->Player2MinerWorkingProgress);
+                break;
+            case 3:
+                ShowProgressBar(ui->Player3MinerWorkingProgress);
+                break;
+            case 4:
+                ShowProgressBar(ui->Player4MinerWorkingProgress);
+                break;
+            }
+
             //MESSAGE DEBUG
             qDebug() << "joueur:" << PartieEnCours.ListeJoueurs[PartieEnCours.TourJoueur]->GetPlayerName() << ", mine:" << PartieEnCours.ListeMines[MineAEntrer-1]->Nom << ", Mineur présent" << PartieEnCours.ListeMines[MineAEntrer-1]->ListeMineursPresents[0]->GetPlayerName() << ", Minage en cours:" << PartieEnCours.ListeMines[MineAEntrer-1]->MinageEnCours << ", Duree Minage:" << PartieEnCours.ListeMines[MineAEntrer-1]->DureeMinage;
         }
         else
         {
-            SetCantPlayLabel("Vous n'avez pas de mineurs de disponible vous ne pouvez donc pas entrer dans une mine."); // Vous n'avez pas de mineurs de disponible vous ne pouvez donc pas entrer dans une mine.
-            QTimer::singleShot(3000, this, &MainWindow::NextTurn);
+            // On vient réactiver tous les boutons
+            ReactivateAllButton();
+
             return 0;
         }
     }
@@ -87,15 +106,27 @@ int MainWindow::EnterMine(int MineAEntrer)
         }
 
         SetCantPlayLabel("Vous ne pouvez pas rentrer dans cette mine car elle est pleine.");
+
+        // On vient réactiver tous les boutons
+        ReactivateAllButton();
+
         return 0;
     }
 
     // On vient passer au tour suivant
     NextTurn();
+
+    return 0;
 }
 
 void MainWindow::NextTurn()
 {
+    // On vient réactiver tous les boutons
+    ReactivateAllButton();
+
+    // On vient clear le label contenant les messages d'erreurs
+    ClearCantPlayLabel();
+
     // Avant de passer au tour suivant, on vient faire travailler les mineurs
     MakeMinersWork();
 
@@ -121,13 +152,21 @@ void MainWindow::NextTurn()
         }
     }
 
+    // On vient regarder si le joueur suivant n'a pas de mineur disponible
+    if (PartieEnCours.ListeJoueurs[PartieEnCours.TourJoueur]->GetPlayerMiners() == 0)
+    {
+        // On vient désactiver tous les boutons
+        DesactivateAllButton();
+
+        // On vient afficher le message d'erreur
+        SetCantPlayLabel("Vous n'avez pas de mineurs de disponible vous sautez donc votre tour.");
+        QTimer::singleShot(2000, this, &MainWindow::NextTurn);
+    }
+
     // On vient actualiser l'affichage des données des joueurs et des mines
     DisplayPlayersTurnName(PartieEnCours.ListeJoueurs[PartieEnCours.TourJoueur]->GetPlayerName());
     InitialisePlayersDisplay();
     InitialiseMinesDisplay();
-
-    // On vient réactiver tous les boutons
-    ReactivateAllButton();
 }
 
 void MainWindow::MakeMinersWork()
@@ -138,6 +177,24 @@ void MainWindow::MakeMinersWork()
         if (PartieEnCours.ListeMines[NumeroMine]->ListeMineursPresents.size() > 0)
         {
             PartieEnCours.ListeMines[NumeroMine]->MinageEnCours++;
+
+            // On vient actualiser l'affichage de la progress bar des mineurs qui minent
+            int Numero = PartieEnCours.ListeMines[NumeroMine]->ListeMineursPresents[0]->GetPlayerNumber();
+            switch (Numero)
+            {
+                case 1:
+                    UpdateProgressBar(ui->Player1MinerWorkingProgress, NumeroMine);
+                    break;
+                case 2:
+                    UpdateProgressBar(ui->Player2MinerWorkingProgress, NumeroMine);
+                    break;
+                case 3:
+                    UpdateProgressBar(ui->Player3MinerWorkingProgress, NumeroMine);
+                    break;
+                case 4:
+                    UpdateProgressBar(ui->Player4MinerWorkingProgress, NumeroMine);
+                    break;
+            }
         }
 
         // On vient vérifier si le minage en cours est égale à la durée de minage
@@ -146,6 +203,24 @@ void MainWindow::MakeMinersWork()
             // On remet le mineur dans le joueur ainsi que sa récompense
             PartieEnCours.ListeMines[NumeroMine]->ListeMineursPresents[0]->SetPlayerMiners(PartieEnCours.ListeMines[NumeroMine]->ListeMineursPresents[0]->GetPlayerMiners()+1);
             PartieEnCours.ListeMines[NumeroMine]->ListeMineursPresents[0]->SetPlayerCoins(PartieEnCours.ListeMines[NumeroMine]->ListeMineursPresents[0]->GetPlayerCoins() + PartieEnCours.ListeMines[NumeroMine]->Gain);
+
+            // On vient ensuite réinitialiser la progress bar du mineur et la cacher
+            int Numero = PartieEnCours.ListeMines[NumeroMine]->ListeMineursPresents[0]->GetPlayerNumber();
+            switch (Numero)
+            {
+            case 1:
+                    ClearAndHideProgressBar(ui->Player1MinerWorkingProgress);
+                    break;
+            case 2:
+                    ClearAndHideProgressBar(ui->Player2MinerWorkingProgress);
+                    break;
+            case 3:
+                    ClearAndHideProgressBar(ui->Player3MinerWorkingProgress);
+                    break;
+            case 4:
+                    ClearAndHideProgressBar(ui->Player4MinerWorkingProgress);
+                    break;
+            }
 
             // On enlève le mineur de la liste des mineurs présents dans la mine
             PartieEnCours.ListeMines[NumeroMine]->ListeMineursPresents.erase(PartieEnCours.ListeMines[NumeroMine]->ListeMineursPresents.begin());
@@ -163,17 +238,12 @@ void MainWindow::DisplayCurrentRound(int CurrentRound)
 
 void MainWindow::SetCantPlayLabel(string Message)
 {
-    qDebug() << Message;
     ui->CantPlayLabel->setText(QString::fromStdString(Message));
-    QTimer::singleShot(3000, this, &MainWindow::ClearCantPlayLabel);
 }
 
 void MainWindow::ClearCantPlayLabel()
 {
     ui->CantPlayLabel->setText(QString::fromStdString(""));
-
-    // On vient réactiver tous les boutons
-    ReactivateAllButton();
 }
 
 void MainWindow::DisplayPlayersTurnName(string PlayerName)
@@ -231,4 +301,27 @@ void MainWindow::ReactivateAllButton()
     ui->Mine2Enter->setEnabled(true);
     ui->Mine3Enter->setEnabled(true);
     ui->Mine4Enter->setEnabled(true);
+}
+
+void MainWindow::ShowProgressBar(QProgressBar* ProgressBar)
+{
+    ProgressBar->setHidden(false);
+}
+
+void MainWindow::UpdateProgressBar(QProgressBar* ProgressBar, int NumeroMine)
+{
+    if (ProgressBar->maximum() != PartieEnCours.ListeMines[NumeroMine]->DureeMinage)
+    {
+        // On vient initialiser sa valeur max
+        ProgressBar->setMaximum(PartieEnCours.ListeMines[NumeroMine]->DureeMinage);
+    }
+
+    // On incrémente sa valeur de 1
+    ProgressBar->setValue(ProgressBar->value() + 1);
+}
+
+void MainWindow::ClearAndHideProgressBar(QProgressBar* ProgressBar)
+{
+    ProgressBar->setHidden(true);
+    ProgressBar->setValue(0);
 }

@@ -8,7 +8,8 @@ class Mine;
 class Player
 {
 public:
-    Player(std::string PlayerName);
+    Player(int PlayerNumber, std::string PlayerName);
+    int GetPlayerNumber();
     std::string GetPlayerName();
     int GetPlayerCoins();
     int GetPlayerMiners();
@@ -16,6 +17,7 @@ public:
     void SetPlayerMiners(int NewAmountOfMiners);
 
 private:
+    int Number;
     std::string Name;
     int Coins;
     int Miners;

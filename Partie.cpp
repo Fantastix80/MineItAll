@@ -11,10 +11,10 @@ Partie::Partie()
 
 void Partie::CreateListeJoueurs(string Joueur1, string Joueur2, string Joueur3, string Joueur4)
 {
-    this->ListeJoueurs[0] = new Player(Joueur1);
-    this->ListeJoueurs[1] = new Player(Joueur2);
-    this->ListeJoueurs[2] = new Player(Joueur3);
-    this->ListeJoueurs[3] = new Player(Joueur4);
+    this->ListeJoueurs[0] = new Player(1, Joueur1);
+    this->ListeJoueurs[1] = new Player(2, Joueur2);
+    this->ListeJoueurs[2] = new Player(3, Joueur3);
+    this->ListeJoueurs[3] = new Player(4, Joueur4);
 }
 
 extern "C"
