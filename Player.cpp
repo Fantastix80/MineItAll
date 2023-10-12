@@ -41,4 +41,3 @@ void Player::SetPlayerMiners(int NewAmountOfMiners)
 {
     this->Miners = NewAmountOfMiners;
 }
-

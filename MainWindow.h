@@ -2,7 +2,6 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QTimer>
 #include <QProgressBar>
 #include "Player.h"
 #include "Partie.h"
@@ -22,14 +21,16 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    void ActionTimer();
+    void SwitchPages(int Index);
+    void QuitGame();
+    void StartGame();
     void DisplayCurrentRound(int CurrentRound);
     void SetCantPlayLabel(string Message);
     void ClearCantPlayLabel();
     void DisplayCurrentRound(Player* ListeJoueurs[4]);
     void DisplayPlayersTurnName(string PlayerName);
     int EnterMine(int MineAEntrer);
-    void NextTurn();
+    int NextTurn();
     void MakeMinersWork();
     void DesactivateAllButton();
     void ReactivateAllButton();
@@ -38,10 +39,11 @@ public:
     void ShowProgressBar(QProgressBar* ProgressBar);
     void UpdateProgressBar(QProgressBar* ProgressBar, int NumeroMine);
     void ClearAndHideProgressBar(QProgressBar* ProgressBar);
+    void ClearGame(bool Redirect, int PageToRedirectTo);
+    void DisplayScoreBoard();
 
 private:
     Ui::MainWindow *ui;
-    Partie PartieEnCours;
-    QTimer* Timer;
+    Partie* PartieEnCours;
 };
 #endif // MAINWINDOW_H

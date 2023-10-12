@@ -8,7 +8,10 @@ class Mine;
 class Player
 {
 public:
+    // Constructeurs
     Player(int PlayerNumber, std::string PlayerName);
+
+    // Fonctions
     int GetPlayerNumber();
     std::string GetPlayerName();
     int GetPlayerCoins();
@@ -21,7 +24,6 @@ private:
     std::string Name;
     int Coins;
     int Miners;
-    Mine* WhereIsMiner;
 };
 
 #endif // PLAYER_H

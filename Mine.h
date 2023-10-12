@@ -11,7 +11,14 @@ class Player;
 class Mine
 {
 public:
+    // Constructeur
     Mine(string Name, int CapaciteMax, int DureeMinage, int Gain);
+
+    // Destructeur
+    //~Mine();
+
+    // Fonctions
+    //void ClearListeMineurs();
 
     // Variables
     string Nom;
@@ -19,7 +26,6 @@ public:
     int DureeMinage;
     int MinageEnCours;
     int Gain;
-    //Player* ListeMineursPresents[];
     vector<Player*> ListeMineursPresents;
 };
 

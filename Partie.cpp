@@ -36,3 +36,25 @@ void Partie::CreateListeMines(string Mine1, string Mine2, string Mine3, string M
     this->ListeMines[2] = new Mine(Mine3, GetRandomInt(1,3), GetRandomInt(1,5), GetRandomInt(1,3));
     this->ListeMines[3] = new Mine(Mine4, GetRandomInt(1,3), GetRandomInt(1,5), GetRandomInt(1,3));
 }
+
+Partie::~Partie()
+{
+    // Appeler la fonction pour libérer les joueurs et les mines
+    ClearPlayersAndMines();
+}
+
+void Partie::ClearPlayersAndMines()
+{
+    // Libérer les joueurs
+    for (int i = 0; i < 4; ++i)
+    {
+        delete ListeJoueurs[i];
+    }
+
+    // Libérer les mines
+    for (int i = 0; i < 4; ++i)
+    {
+        delete ListeMines[i];
+    }
+
+}
