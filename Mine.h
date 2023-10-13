@@ -12,7 +12,7 @@ class Mine
 {
 public:
     // Constructeur
-    Mine(string Name, int CapaciteMax, int DureeMinage, int Gain);
+    Mine(int NumeroMine, string Name, int CapaciteMax, int DureeMinage, int Gain);
 
     // Destructeur
     //~Mine();
@@ -21,6 +21,7 @@ public:
     //void ClearListeMineurs();
 
     // Variables
+    int Numero;
     string Nom;
     int CapaciteMax;
     int DureeMinage;

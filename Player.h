@@ -9,7 +9,7 @@ class Player
 {
 public:
     // Constructeurs
-    Player(int PlayerNumber, std::string PlayerName);
+    Player(int PlayerNumber, std::string PlayerName, bool IsBot);
 
     // Fonctions
     int GetPlayerNumber();
@@ -18,12 +18,14 @@ public:
     int GetPlayerMiners();
     void SetPlayerCoins(int NewAmountOfCoins);
     void SetPlayerMiners(int NewAmountOfMiners);
+    bool IsBot();
 
 private:
     int Number;
     std::string Name;
     int Coins;
     int Miners;
+    bool Bot;
 };
 
 #endif // PLAYER_H

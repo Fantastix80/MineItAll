@@ -9,17 +9,32 @@ Partie::Partie()
     this->TourJoueur = 0;
 }
 
-void Partie::CreateListeJoueurs(string Joueur1, string Joueur2, string Joueur3, string Joueur4)
+void Partie::CreateListeJoueurs(int NombreDeJoueurs, string PlayerNames[4])
 {
-    this->ListeJoueurs[0] = new Player(1, Joueur1);
-    this->ListeJoueurs[1] = new Player(2, Joueur2);
-    this->ListeJoueurs[2] = new Player(3, Joueur3);
-    this->ListeJoueurs[3] = new Player(4, Joueur4);
+    for (int i = 0; i < 4; i++)
+    {
+        if (PlayerNames[i] == "")
+        {
+            PlayerNames[i] = "Joueur " + to_string(i+1);
+        }
+    }
+
+    for (int i = 0; i < NombreDeJoueurs; i++)
+    {
+        this->ListeJoueurs[i] = new Player(i+1, PlayerNames[i], false);
+    }
+
+    int TempInt = 1;
+    for (int i = NombreDeJoueurs; i < 4; i++)
+    {
+        this->ListeJoueurs[i] = new Player(i+1, "Bot " + to_string(TempInt), true);
+        TempInt++;
+    }
 }
 
 extern "C"
 {
-    int GetRandomInt(int MinInt, int MaxInt)
+    int GetRandomIntC(int MinInt, int MaxInt)
     {
         int TempInt = MaxInt - MinInt;
         int RandomInt = rand() % (TempInt + 1);
@@ -29,12 +44,17 @@ extern "C"
     }
 };
 
+int Partie::GetRandomInt(int MinInt, int MaxInt)
+{
+    return GetRandomIntC(MinInt, MaxInt);
+}
+
 void Partie::CreateListeMines(string Mine1, string Mine2, string Mine3, string Mine4)
 {
-    this->ListeMines[0] = new Mine(Mine1, GetRandomInt(1,3), GetRandomInt(1,5), GetRandomInt(1,3));
-    this->ListeMines[1] = new Mine(Mine2, GetRandomInt(1,3), GetRandomInt(1,5), GetRandomInt(1,3));
-    this->ListeMines[2] = new Mine(Mine3, GetRandomInt(1,3), GetRandomInt(1,5), GetRandomInt(1,3));
-    this->ListeMines[3] = new Mine(Mine4, GetRandomInt(1,3), GetRandomInt(1,5), GetRandomInt(1,3));
+    this->ListeMines[0] = new Mine(1, Mine1, GetRandomIntC(1,3), GetRandomIntC(1,5), GetRandomIntC(1,3));
+    this->ListeMines[1] = new Mine(2, Mine2, GetRandomIntC(1,3), GetRandomIntC(1,5), GetRandomIntC(1,3));
+    this->ListeMines[2] = new Mine(3, Mine3, GetRandomIntC(1,3), GetRandomIntC(1,5), GetRandomIntC(1,3));
+    this->ListeMines[3] = new Mine(4, Mine4, GetRandomIntC(1,3), GetRandomIntC(1,5), GetRandomIntC(1,3));
 }
 
 Partie::~Partie()

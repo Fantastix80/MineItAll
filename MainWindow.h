@@ -31,6 +31,7 @@ public:
     void DisplayPlayersTurnName(string PlayerName);
     int EnterMine(int MineAEntrer);
     int NextTurn();
+    void MakeBotPlay();
     void MakeMinersWork();
     void DesactivateAllButton();
     void ReactivateAllButton();
@@ -41,6 +42,10 @@ public:
     void ClearAndHideProgressBar(QProgressBar* ProgressBar);
     void ClearGame(bool Redirect, int PageToRedirectTo);
     void DisplayScoreBoard();
+    void GetAndCreatePlayersInfo();
+
+public slots:
+    void Options(QString NumberOfPlayers);
 
 private:
     Ui::MainWindow *ui;

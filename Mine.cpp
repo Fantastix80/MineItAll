@@ -2,8 +2,9 @@
 #include "Player.h"
 #include <QDebug>
 
-Mine::Mine(string Nom, int CapaciteMax, int DureeMinage, int Gain)
+Mine::Mine(int NumeroMine, string Nom, int CapaciteMax, int DureeMinage, int Gain)
 {
+    this->Numero = NumeroMine;
     this->Nom = Nom;
     this->CapaciteMax = CapaciteMax;
     this->DureeMinage = DureeMinage * 4;

@@ -3,12 +3,13 @@
 
 using namespace std;
 
-Player::Player(int PlayerNumber, string PlayerName)
+Player::Player(int PlayerNumber, string PlayerName, bool IsBot)
 {
     this->Number = PlayerNumber;
     this->Name = PlayerName;
     this->Coins = 0;
     this->Miners = 1;
+    this->Bot = IsBot;
 }
 
 int Player::GetPlayerNumber()
@@ -40,4 +41,9 @@ int Player::GetPlayerMiners()
 void Player::SetPlayerMiners(int NewAmountOfMiners)
 {
     this->Miners = NewAmountOfMiners;
+}
+
+bool Player::IsBot()
+{
+    return this->Bot;
 }

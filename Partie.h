@@ -18,8 +18,8 @@ public:
     ~Partie();
 
     // Fonctions
-    void CreateListeJoueurs(string Joueur1, string Joueur2, string Joueur3, string Joueur4);
-    int GetRandomIntTEST(int MinInt, int MaxInt);
+    void CreateListeJoueurs(int NombreDeJoueurs, string PlayerNames[4]);
+    int GetRandomInt(int MinInt, int MaxInt);
     void CreateListeMines(string Mine1, string Mine2, string Mine3, string Mine4);
     void ClearPlayersAndMines();
 
