@@ -14,12 +14,6 @@ public:
     // Constructeur
     Mine(int NumeroMine, string Name, int CapaciteMax, int DureeMinage, int Gain);
 
-    // Destructeur
-    //~Mine();
-
-    // Fonctions
-    //void ClearListeMineurs();
-
     // Variables
     int Numero;
     string Nom;

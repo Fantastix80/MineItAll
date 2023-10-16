@@ -43,6 +43,8 @@ public:
     void ClearGame(bool Redirect, int PageToRedirectTo);
     void DisplayScoreBoard();
     void GetAndCreatePlayersInfo();
+    int PlayMiniGame(int NumeroMine);
+    void HandleBonusCoinsCollected(int NumeroMine, int BonusCoins);
 
 public slots:
     void Options(QString NumberOfPlayers);
@@ -50,5 +52,6 @@ public slots:
 private:
     Ui::MainWindow *ui;
     Partie* PartieEnCours;
+    int ScoreMiniJeu;
 };
 #endif // MAINWINDOW_H

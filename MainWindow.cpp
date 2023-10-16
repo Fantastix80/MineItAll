@@ -1,10 +1,12 @@
 #include "MainWindow.h"
 #include "ui_mainwindow.h"
+#include "minijeu.h"
 #include "Partie.h"
 #include <string>
 
 #include <qDebug>
 #include <QTimer>
+#include <QMessageBox>
 
 using namespace std;
 
@@ -23,6 +25,7 @@ MainWindow::MainWindow(QWidget *parent)
     2: Règles du jeu
     3: Options du jeu
     4: ScoreBoard
+    5: Mini Jeu
     */
 
     // On vient connecter les boutons du menu
@@ -43,6 +46,11 @@ MainWindow::MainWindow(QWidget *parent)
     ui->PlayerName2Container_2->hide();
     ui->PlayerName3Container_2->hide();
     ui->PlayerName4Container_2->hide();
+
+    // Menu Règles
+
+    // On vient connecter le bouton de retour
+    connect(ui->ReturnFromReglesBtn, &QPushButton::clicked, this, [this]{ SwitchPages(0); });
 }
 
 MainWindow::~MainWindow()
@@ -63,19 +71,12 @@ void MainWindow::Options(QString NumberOfPlayers)
     for (int i = 0; i < NumberOfPlayers.toInt(); i++)
     {
         widgetList[i*3]->show();
-        qDebug() << "show:" << widgetList[i*3]->objectName();
     }
 
     // On vient boucler à travers la liste des widgets PlayerNameXContainer pour cacher ceux nécessaires
     for (int i = NumberOfPlayers.toInt(); i < 4; i++)
     {
         widgetList[i*3]->hide();
-        qDebug() << "hide:" << widgetList[i*3]->objectName();
-    }
-
-    for (QWidget* wid : widgetList)
-    {
-        qDebug() << wid->objectName();
     }
 }
 
@@ -160,9 +161,6 @@ int MainWindow::EnterMine(int MineAEntrer)
                 ShowProgressBar(ui->Player4MinerWorkingProgress);
                 break;
             }
-
-            //MESSAGE DEBUG
-            qDebug() << "joueur:" << PartieEnCours->ListeJoueurs[PartieEnCours->TourJoueur]->GetPlayerName() << ", Numéro:" << PartieEnCours->ListeJoueurs[PartieEnCours->TourJoueur]->GetPlayerNumber() << ", mine:" << PartieEnCours->ListeMines[MineAEntrer-1]->Nom << ", Mineur présent" << PartieEnCours->ListeMines[MineAEntrer-1]->ListeMineursPresents[0]->GetPlayerName() << ", Minage en cours:" << PartieEnCours->ListeMines[MineAEntrer-1]->MinageEnCours << ", Duree Minage:" << PartieEnCours->ListeMines[MineAEntrer-1]->DureeMinage;
         }
         else
         {
@@ -255,14 +253,11 @@ void MainWindow::MakeBotPlay()
         if ((int)Mine->ListeMineursPresents.size() < Mine->CapaciteMax)
         {
             MineDispo.push_back(Mine);
-            qDebug() << "Mine dispo:" << Mine->Nom;
         }
     }
 
     int RandomInt = PartieEnCours->GetRandomInt(0, MineDispo.size()-1);
-    qDebug() << RandomInt;
     Mine* MineAEntrer = MineDispo[RandomInt];
-    qDebug() << "Mine à entrer par le bot:" << MineAEntrer->Numero;
     EnterMine(MineAEntrer->Numero);
 }
 
@@ -297,6 +292,16 @@ void MainWindow::MakeMinersWork()
         // On vient vérifier si le minage en cours est égale à la durée de minage
         if (PartieEnCours->ListeMines[NumeroMine]->MinageEnCours == PartieEnCours->ListeMines[NumeroMine]->DureeMinage)
         {
+            if (PartieEnCours->ListeMines[NumeroMine]->ListeMineursPresents[0]->IsBot())
+            {
+                // Random int to make him win bonus coins
+                HandleBonusCoinsCollected(NumeroMine, PartieEnCours->GetRandomInt(0, 12));
+            }
+            else
+            {
+                // On le fait jouer au mini jeu
+                PlayMiniGame(NumeroMine);
+            }
             // On remet le mineur dans le joueur ainsi que sa récompense
             PartieEnCours->ListeMines[NumeroMine]->ListeMineursPresents[0]->SetPlayerMiners(PartieEnCours->ListeMines[NumeroMine]->ListeMineursPresents[0]->GetPlayerMiners()+1);
             PartieEnCours->ListeMines[NumeroMine]->ListeMineursPresents[0]->SetPlayerCoins(PartieEnCours->ListeMines[NumeroMine]->ListeMineursPresents[0]->GetPlayerCoins() + PartieEnCours->ListeMines[NumeroMine]->Gain);
@@ -306,7 +311,6 @@ void MainWindow::MakeMinersWork()
             switch (Numero)
             {
             case 1:
-                    qDebug() << "Clear progress bar joueur 1";
                     ClearAndHideProgressBar(ui->Player1MinerWorkingProgress);
                     break;
             case 2:
@@ -418,7 +422,6 @@ void MainWindow::UpdateProgressBar(QProgressBar* ProgressBar, int NumeroMine)
 
     // On incrémente sa valeur de 1
     ProgressBar->setValue(PartieEnCours->ListeMines[NumeroMine]->MinageEnCours);
-    qDebug() << ProgressBar->value() << "/" << ProgressBar->maximum();
 }
 
 void MainWindow::ClearAndHideProgressBar(QProgressBar* ProgressBar)
@@ -485,4 +488,17 @@ void MainWindow::GetAndCreatePlayersInfo()
     string PlayerName4 = ui->PlayerNameValue4->text().toStdString();
     string PlayerNames[4] = {PlayerName1, PlayerName2, PlayerName3, PlayerName4};
     PartieEnCours->CreateListeJoueurs(NumberOfPlayer, PlayerNames);
+}
+
+int MainWindow::PlayMiniGame(int NumeroMine)
+{
+    Minijeu *mj = new Minijeu(this);
+    connect(mj, &Minijeu::BonusCoinsCollected, this, [=](int BonusCoins) { HandleBonusCoinsCollected(NumeroMine, BonusCoins); });
+
+    return mj->exec();
+}
+
+void MainWindow::HandleBonusCoinsCollected(int NumeroMine, int BonusCoins)
+{
+    PartieEnCours->ListeMines[NumeroMine]->ListeMineursPresents[0]->SetPlayerCoins(PartieEnCours->ListeMines[NumeroMine]->ListeMineursPresents[0]->GetPlayerCoins() + BonusCoins);
 }

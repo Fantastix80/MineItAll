@@ -12,22 +12,3 @@ Mine::Mine(int NumeroMine, string Nom, int CapaciteMax, int DureeMinage, int Gai
     this->Gain = DureeMinage * Gain;
     this->ListeMineursPresents = {};
 }
-
-/*Mine::~Mine()
-{
-    // Appeler la fonction pour libérer les joueurs et les mines
-    qDebug() << "Debug Mine #1";
-    ClearListeMineurs();
-}
-
-void Mine::ClearListeMineurs()
-{
-    qDebug() << "Debug Mine #2";
-    // Libérer les joueurs
-    for (int i = 0; i < (int)ListeMineursPresents.size(); ++i)
-    {
-        qDebug() << "Debug Mine #3-"<<i;
-        ListeMineursPresents[i]->GetPlayerName();
-        delete ListeMineursPresents[i];
-    }
-}*/

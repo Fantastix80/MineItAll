@@ -13,16 +13,19 @@ SOURCES += \
     Partie.cpp \
     Player.cpp \
     main.cpp \
-    MainWindow.cpp
+    MainWindow.cpp \
+    minijeu.cpp
 
 HEADERS += \
     MainWindow.h \
     Mine.h \
     Partie.h \
-    Player.h
+    Player.h \
+    minijeu.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    minijeu.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

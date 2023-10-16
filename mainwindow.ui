@@ -99,7 +99,7 @@ QProgressBar::chunk
 	border-radius: 10px;
 }
 
-#OptionsPage #ReturnFromOptionsBtn
+#OptionsPage #ReturnFromOptionsBtn, #ReglesPage #ReturnFromReglesBtn
 {
 	padding: 10px 20px;
 	background-color: #F68929;
@@ -1453,27 +1453,228 @@ Text_2: #838ea2
         </property>
         <item>
          <widget class="QWidget" name="ReglesContainer" native="true">
-          <layout class="QVBoxLayout" name="verticalLayout_18">
+          <layout class="QVBoxLayout" name="verticalLayout_28">
            <property name="spacing">
             <number>0</number>
            </property>
            <property name="leftMargin">
-            <number>0</number>
+            <number>20</number>
            </property>
            <property name="topMargin">
-            <number>0</number>
+            <number>20</number>
            </property>
            <property name="rightMargin">
-            <number>0</number>
+            <number>20</number>
            </property>
            <property name="bottomMargin">
-            <number>0</number>
+            <number>20</number>
            </property>
-           <item>
-            <widget class="QLabel" name="label">
-             <property name="text">
-              <string>REGLES</string>
+           <item alignment="Qt::AlignLeft|Qt::AlignTop">
+            <widget class="QWidget" name="HeaderContainer" native="true">
+             <layout class="QVBoxLayout" name="verticalLayout_18">
+              <property name="spacing">
+               <number>0</number>
+              </property>
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <item alignment="Qt::AlignLeft|Qt::AlignTop">
+               <widget class="QPushButton" name="ReturnFromReglesBtn">
+                <property name="font">
+                 <font>
+                  <family>Modern No. 20</family>
+                  <pointsize>16</pointsize>
+                 </font>
+                </property>
+                <property name="cursor">
+                 <cursorShape>PointingHandCursor</cursorShape>
+                </property>
+                <property name="text">
+                 <string>&lt;- Retour</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item alignment="Qt::AlignLeft|Qt::AlignTop">
+            <widget class="QWidget" name="BodyContainer" native="true">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
              </property>
+             <layout class="QVBoxLayout" name="verticalLayout_27">
+              <property name="spacing">
+               <number>25</number>
+              </property>
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QLabel" name="Regles">
+                <property name="font">
+                 <font>
+                  <family>Modern No. 20</family>
+                  <pointsize>24</pointsize>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Règles du jeu:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="label">
+                <property name="font">
+                 <font>
+                  <family>Modern No. 20</family>
+                  <pointsize>16</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Le but du jeu est d'avoir le plus de pièces possible à la fin de la partie.</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_2">
+                <property name="font">
+                 <font>
+                  <family>Modern No. 20</family>
+                  <pointsize>16</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>La partie se déroule en 10 tours par défaut.</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_3">
+                <property name="font">
+                 <font>
+                  <family>Modern No. 20</family>
+                  <pointsize>16</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Dans le menu options, vous pouvez modifier le nombre de joueurs et de tours de la partie.</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_4">
+                <property name="font">
+                 <font>
+                  <family>Modern No. 20</family>
+                  <pointsize>16</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Pour gagner des pièces il vous suffit de rentrer dans les mines.</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_5">
+                <property name="font">
+                 <font>
+                  <family>Modern No. 20</family>
+                  <pointsize>16</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Vos mineurs s'occuperont de miner pour vous ramener des pièces.</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_6">
+                <property name="font">
+                 <font>
+                  <family>Modern No. 20</family>
+                  <pointsize>16</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Une fois fini, vous aurez un mini jeu qui s'affichera afin d'avoir une chance de gagner des pièces bonus.</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_7">
+                <property name="font">
+                 <font>
+                  <family>Modern No. 20</family>
+                  <pointsize>16</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Les mines possèdent des caractéristiques générées aléatoirement (Capacité max, Gain, Durée de minage).</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_8">
+                <property name="font">
+                 <font>
+                  <family>Modern No. 20</family>
+                  <pointsize>16</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Seul le premier joueur dans la &quot;file d'attente&quot; de la mine peut miner.</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_9">
+                <property name="font">
+                 <font>
+                  <family>Modern No. 20</family>
+                  <pointsize>16</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Les autres doivent attendre que le premier finisse avoir de pouvoir commencer à miner.</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_10">
+                <property name="font">
+                 <font>
+                  <family>Modern No. 20</family>
+                  <pointsize>16</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Vous pouvez suivre la progression de votre mineur grâce à la barre en dessous de votre pseudo.</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </widget>
            </item>
           </layout>
